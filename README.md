@@ -1,5 +1,6 @@
 # Scan-WP
-Wordpress Plugin Vulnerability Scanner
+Wordpress Plugin Vulnerability Scanner by hackintoanetwork
+! 공유 금지 !
 ```
 Docker wordpress 구축
 
