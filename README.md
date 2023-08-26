@@ -18,7 +18,7 @@ One Line Command
 PORT : 내부 포트는 80 이고 외부 포트는 8888 (외부에선 8888으로 들어가야 함)
 MYSQL PASSWORD : wppass
 
-Docker 삭제
+Docker 초기화
 
 1. docker stop $(docker ps -a -q)
 
