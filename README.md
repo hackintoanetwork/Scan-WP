@@ -64,7 +64,7 @@ exit
 ```
 
 ```bash
-# Docker Container shell 에 접속
+# Docker Container Shell 에 접속
 
 $ docker exec -it mysql_db bash
 $ docker exec -it wp bash
