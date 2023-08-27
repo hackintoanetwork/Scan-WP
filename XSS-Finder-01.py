@@ -97,7 +97,7 @@ def zip_extract(directory):
             print(ConsoleColor.WARNING + "[+] ZIP 파일 삭제 완로" + ConsoleColor.ENDC)
 
 if __name__ == "__main__":
-    directory = '/Users/sehyoung/Downloads' # 변경
+    directory = '/Users/sehyoung/Downloads' # 플러그인 다운로드 디렉터리로 수정
     zip_extract(directory)
     try:
         walk(scan_file,directory)
