@@ -36,6 +36,14 @@ $ docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(doc
 ```
 
 ```bash
+# Docker Container Shell 에 접속
+
+$ docker exec -it wp bash
+$ docker exec -it mysql_db bash
+```
+
+```bash
+# mysql_db Container mysql 접속
 root@73ff547924d2:/# mysql -u wp -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -63,11 +71,4 @@ mysql> exit
 Bye
 root@73ff547924d2:/# exit
 exit
-```
-
-```bash
-# Docker Container Shell 에 접속
-
-$ docker exec -it mysql_db bash
-$ docker exec -it wp bash
 ```
