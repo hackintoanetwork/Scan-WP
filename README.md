@@ -1,7 +1,7 @@
 # Scan-WP
 Wordpress Plugin Vulnerability Scanner by hackintoanetwork
-! 공유 금지 
-! 일주일 뒤 비공개 예정.
+<br>공유 금지 
+</br>일주일 뒤 비공개 예정.
 ```
 Docker wordpress 구축
 
