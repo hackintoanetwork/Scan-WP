@@ -121,7 +121,7 @@ def main(directory):
 
 
 if __name__ == '__main__':
-    directory = '/Users/sehyoung/Downloads' # 변경
+    directory = '/Users/sehyoung/Downloads' # 플러그인 다운로드 디렉터리로 수정
     try:
         zip_extract(directory)
         main(directory)
