@@ -44,6 +44,7 @@ $ docker exec -it mysql_db bash
 
 ```bash
 # mysql_db Container mysql 접속
+
 root@73ff547924d2:/# mysql -u wp -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
