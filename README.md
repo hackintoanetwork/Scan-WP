@@ -1,7 +1,7 @@
 # Scan-WP
 Wordpress Plugin Vulnerability Scanner by hackintoanetwork
-```
-Docker wordpress 구축
+```bash
+Wordpress Docker 구축
 
 1. docker pull mysql:5.7
 
@@ -13,7 +13,7 @@ Docker wordpress 구축
 
 One Line Command (Tested on Apple Silicon Mac OSX)
 
-* docker pull mysql:5.7 --platform linux/amd64; docker pull wordpress --platform linux/amd64; docker run -d --name mysql_db -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=wpdb -e MYSQL_USER=wp -e MYSQL_PASSWORD=wppass -v mysql:/var/lib/mysql mysql:5.7; docker run -d --name wp -p 8888:80 --link mysql_db:wpdb -e WORDPRESS_DB_HOST=wpdb -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wppass -e WORDPRESS_DB_NAME=wpdb -v wp:/var/www/html wordpress
+$ docker pull mysql:5.7 --platform linux/amd64; docker pull wordpress --platform linux/amd64; docker run -d --name mysql_db -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=wpdb -e MYSQL_USER=wp -e MYSQL_PASSWORD=wppass -v mysql:/var/lib/mysql mysql:5.7; docker run -d --name wp -p 8888:80 --link mysql_db:wpdb -e WORDPRESS_DB_HOST=wpdb -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wppass -e WORDPRESS_DB_NAME=wpdb -v wp:/var/www/html wordpress
 
 PORT : 내부 포트는 80 이고 외부 포트는 8888 (외부에선 8888으로 들어가야 함)
 MYSQL PASSWORD : wppass
@@ -30,5 +30,42 @@ Docker 초기화
 
 One Line Command
 
-* docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume prune
+$ docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume prune
+```
+
+```bash
+root@73ff547924d2:/# mysql -u wp -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.7.34 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| wpdb               |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+root@73ff547924d2:/# exit
+exit
+```
+
+```bash
+# Docker Container shell 에 접속
+
+$ docker exec -it mysql_db bash
+$ docker exec -it wp bash
 ```
