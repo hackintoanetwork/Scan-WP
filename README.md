@@ -1,7 +1,7 @@
 # Scan-WP
 Wordpress Plugin Vulnerability Scanner by hackintoanetwork
 ```bash
-Wordpress Docker 구축
+# Wordpress Docker 구축
 
 1. docker pull mysql:5.7
 
@@ -17,16 +17,18 @@ $ docker pull mysql:5.7 --platform linux/amd64; docker pull wordpress --platform
 
 PORT : 내부 포트는 80 이고 외부 포트는 8888 (외부에선 8888으로 들어가야 함)
 MYSQL PASSWORD : wppass
+```
 
-Docker 초기화
+```bash
+# Docker 초기화 (컨테이너 및 이미지 모두 삭제)
 
-1. docker stop $(docker ps -a -q)
+1. docker stop $(docker ps -a -q);
 
-2. docker rm $(docker ps -a -q)
+2. docker rm $(docker ps -a -q);
 
-3. docker rmi $(docker images -q)
+3. docker rmi $(docker images -q);
 
-4. docker volume prune
+4. docker volume prune;
 
 One Line Command
 
