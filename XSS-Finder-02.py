@@ -81,7 +81,7 @@ def zip_extract(directory):
             except:
                 continue
             os.remove(zip_file_path)
-            print(ConsoleColor.WARNING + "[+] ZIP 파일 삭제 완로" + ConsoleColor.ENDC)
+            print(ConsoleColor.WARNING + "[+] ZIP 파일 삭제 완료" + ConsoleColor.ENDC)
 
 def main(directory):
     php_files = find_php_files(directory)
