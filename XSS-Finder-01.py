@@ -94,7 +94,7 @@ def zip_extract(directory):
             except:
                 continue
             os.remove(zip_file_path)
-            print(ConsoleColor.WARNING + "[+] ZIP 파일 삭제 완료" + ConsoleColor.ENDC)
+            print(ConsoleColor.WARNING + "[+] ZIP 파일 삭제 완로" + ConsoleColor.ENDC)
 
 if __name__ == "__main__":
     directory = '/Users/sehyoung/Downloads' # 플러그인 다운로드 디렉터리로 수정
