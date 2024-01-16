@@ -1,8 +1,8 @@
 # Scan-WP
 Wordpress Plugin Vulnerability Scanner by hackintoanetwork
-```bash
-# Wordpress Docker 구축
 
+## Wordpress Docker 구축
+```bash
 1. docker pull mysql:5.7
 
 2. docker pull wordpress
@@ -19,9 +19,8 @@ $ docker pull mysql:5.7 --platform linux/amd64; docker pull wordpress --platform
 # MYSQL PASSWORD : wppass
 ```
 
+## Docker 초기화 (컨테이너 및 이미지 모두 삭제)
 ```bash
-# Docker 초기화 (컨테이너 및 이미지 모두 삭제)
-
 1. docker stop $(docker ps -a -q);
 
 2. docker rm $(docker ps -a -q);
@@ -35,16 +34,14 @@ $ docker pull mysql:5.7 --platform linux/amd64; docker pull wordpress --platform
 $ docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume prune
 ```
 
+## Docker Container Shell 에 접속
 ```bash
-# Docker Container Shell 에 접속
-
 $ docker exec -it wp bash
 $ docker exec -it mysql_db bash
 ```
 
+## mysql_db Container mysql 접속
 ```bash
-# mysql_db Container mysql 접속
-
 root@73ff547924d2:/# mysql -u wp -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -74,7 +71,7 @@ root@73ff547924d2:/# exit
 exit
 ```
 
-# Wordpress Docker 구축
+# Wordpress Docker Setup
 ![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/01.png)
 ![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/02.png)
 ![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/03.png)
