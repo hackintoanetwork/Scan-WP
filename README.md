@@ -1,74 +1,100 @@
-# wp-plugin-scanner
+# Wordpress Plugin Scanner
 HackingCamp 27, PoC Security ( CTF Player to Hacker : 선택과 집중 )
 
-## Wordpress Docker 구축
+# Setting up WordPress with Docker
+
+## Basic WordPress Docker Setup
 ```bash
-1. docker pull mysql:5.7
+# 1. Pull required images
+docker pull mysql:5.7
+docker pull wordpress
 
-2. docker pull wordpress
+# 2. Create MySQL container
+docker run -d --name mysql_db \
+  -e MYSQL_ROOT_PASSWORD=toor \
+  -e MYSQL_DATABASE=wpdb \
+  -e MYSQL_USER=wp \
+  -e MYSQL_PASSWORD=wppass \
+  -v mysql:/var/lib/mysql \
+  mysql:5.7
 
-3. docker run -d --name mysql_db -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=wpdb -e MYSQL_USER=wp -e MYSQL_PASSWORD=wppass -v mysql:/var/lib/mysql mysql:5.7
-
-4. docker run -d --name wp -p 8080:80 --link mysql_db:wpdb -e WORDPRESS_DB_HOST=wpdb -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wppass -e WORDPRESS_DB_NAME=wpdb -v wp:/var/www/html wordpress
-
-# One Line Command (Tested on Apple Silicon Mac OSX) <- 복사
-
-$ docker pull mysql:5.7 --platform linux/amd64; docker pull wordpress --platform linux/amd64; docker run -d --name mysql_db -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=wpdb -e MYSQL_USER=wp -e MYSQL_PASSWORD=wppass -v mysql:/var/lib/mysql mysql:5.7; docker run -d --name wp -p 8888:80 --link mysql_db:wpdb -e WORDPRESS_DB_HOST=wpdb -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wppass -e WORDPRESS_DB_NAME=wpdb -v wp:/var/www/html wordpress
-
-# PORT : 내부 포트는 80 이고 외부 포트는 8888 (외부에선 8888으로 들어가야 함)
-# MYSQL PASSWORD : wppass
+# 3. Create WordPress container
+docker run -d --name wp \
+  -p 8080:80 \
+  --link mysql_db:wpdb \
+  -e WORDPRESS_DB_HOST=wpdb \
+  -e WORDPRESS_DB_USER=wp \
+  -e WORDPRESS_DB_PASSWORD=wppass \
+  -e WORDPRESS_DB_NAME=wpdb \
+  -v wp:/var/www/html \
+  wordpress
 ```
 
-## Docker 초기화 (컨테이너 및 이미지 모두 삭제)
+## One-Line Command (Apple Silicon/M1/M2)
 ```bash
-1. docker stop $(docker ps -a -q);
-
-2. docker rm $(docker ps -a -q);
-
-3. docker rmi $(docker images -q);
-
-4. docker volume prune;
-
-# One Line Command
-
-$ docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume prune
+docker pull mysql:5.7 --platform linux/amd64; \
+docker pull wordpress --platform linux/amd64; \
+docker run -d --name mysql_db \
+  -e MYSQL_ROOT_PASSWORD=toor \
+  -e MYSQL_DATABASE=wpdb \
+  -e MYSQL_USER=wp \
+  -e MYSQL_PASSWORD=wppass \
+  -v mysql:/var/lib/mysql mysql:5.7; \
+docker run -d --name wp \
+  -p 8888:80 \
+  --link mysql_db:wpdb \
+  -e WORDPRESS_DB_HOST=wpdb \
+  -e WORDPRESS_DB_USER=wp \
+  -e WORDPRESS_DB_PASSWORD=wppass \
+  -e WORDPRESS_DB_NAME=wpdb \
+  -v wp:/var/www/html wordpress
 ```
 
-## Docker Container Shell 에 접속
+**Note:**
+- External Port: 8888
+- Internal Port: 80
+- MySQL Password: wppass
+
+## Clean Docker Environment
 ```bash
-$ docker exec -it wp bash
-$ docker exec -it mysql_db bash
+# Remove all containers and images
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+docker volume prune
+
+# One-line command
+docker stop $(docker ps -a -q); \
+docker rm $(docker ps -a -q); \
+docker rmi $(docker images -q); \
+docker volume prune
 ```
 
-## mysql_db Container mysql 접속
+## Accessing Container Shells
 ```bash
-root@73ff547924d2:/# mysql -u wp -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 7
-Server version: 5.7.34 MySQL Community Server (GPL)
+# Access WordPress container
+docker exec -it wp bash
 
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+# Access MySQL container
+docker exec -it mysql_db bash
+```
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+## Accessing MySQL in Container
+```bash
+# 1. First access the MySQL container
+docker exec -it mysql_db bash
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+# 2. Then connect to MySQL
+mysql -u wp -p
+# Enter password when prompted: wppass
 
+# 3. Basic MySQL commands
 mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| wpdb               |
-+--------------------+
-2 rows in set (0.00 sec)
+# Should display 'wpdb' and 'information_schema'
 
+# 4. Exit MySQL and container
 mysql> exit
-Bye
-root@73ff547924d2:/# exit
-exit
+root@container:/# exit
 ```
 
 # Wordpress Docker Setup
