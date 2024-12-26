@@ -81,11 +81,3 @@ mysql> show databases;
 mysql> exit
 root@container:/# exit
 ```
-
-# Wordpress Docker Setup
-![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/01.png)
-![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/02.png)
-![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/03.png)
-![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/04.png)
-![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/05.png)
-![img](https://raw.githubusercontent.com/hackintoanetwork/Scan-WP/main/png/06.png)
