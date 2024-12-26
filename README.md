@@ -55,21 +55,6 @@ docker run -d --name wp \
 - Internal Port: 80
 - MySQL Password: wppass
 
-## Clean Docker Environment
-```bash
-# Remove all containers and images
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
-docker rmi $(docker images -q)
-docker volume prune
-
-# One-line command
-docker stop $(docker ps -a -q); \
-docker rm $(docker ps -a -q); \
-docker rmi $(docker images -q); \
-docker volume prune
-```
-
 ## Accessing Container Shells
 ```bash
 # Access WordPress container
