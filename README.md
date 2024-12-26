@@ -1,5 +1,5 @@
 # Scan-WP
-```Wordpress Plugin Vulnerability Scanner by hackintoanetwork```
+HackingCamp 27, PoC Security ( CTF Player to Hacker : 선택과 집중 )
 
 ## Wordpress Docker 구축
 ```bash
